@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Background Questionnaire – Dr. Joseph F. Kulas, Ph.D., ABPP</title>
+<style>
+  /* ── Reset & Base ── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 10pt;
+    color: #000;
+    background: #e8e8e8;
+    padding: 20px;
+  }
+
+  /* ── Page Shell ── */
+  .page {
+    background: #fff;
+    width: 8.5in;
+    min-height: 11in;
+    margin: 0 auto 30px;
+    padding: 0.6in 0.6in 0.6in 0.6in;
+    box-shadow: 0 2px 12px rgba(0,0,0,.18);
+    page-break-after: always;
+  }
+
+  /* ── Header ── */
+  .form-title {
+    text-align: center;
+    font-size: 14pt;
+    font-weight: bold;
+    letter-spacing: .04em;
+    margin-bottom: 2pt;
+  }
+  .form-subtitle {
+    text-align: center;
+    font-size: 10pt;
+    font-style: italic;
+    margin-bottom: 6pt;
+  }
+  .header-rule { border: none; border-top: 1.5px solid #000; margin: 4pt 0; }
+  .header-info { font-size: 9pt; line-height: 1.5; }
+  .header-rule-thin { border: none; border-top: 0.5px solid #000; margin: 4pt 0 8pt; }
+  .header-intro { font-size: 8.5pt; line-height: 1.45; margin-bottom: 10pt; }
+
+  /* ── Section heading ── */
+  .section-title {
+    font-size: 11pt;
+    font-weight: bold;
+    text-align: center;
+    background: #000;
+    color: #fff;
+    padding: 2pt 6pt;
+    margin: 10pt 0 6pt;
+    letter-spacing: .03em;
+  }
+  .section-note { font-size: 8.5pt; margin-bottom: 6pt; }
+
+  /* ── Form rows ── */
+  .form-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 6pt;
+    margin-bottom: 5pt;
+    flex-wrap: wrap;
+  }
+  .form-group {
+    display: flex;
+    align-items: flex-end;
+    gap: 3pt;
+    flex: 1;
+    min-width: 0;
+  }
+  .form-group.fixed-xs  { flex: 0 0 55pt; }
+  .form-group.fixed-sm  { flex: 0 0 80pt; }
+  .form-group.fixed-md  { flex: 0 0 120pt; }
+  .form-group.fixed-lg  { flex: 0 0 160pt; }
+  .form-group.fixed-xl  { flex: 0 0 200pt; }
+  .form-group.grow2     { flex: 2; }
+  .form-group.grow3     { flex: 3; }
+
+  label {
+    font-size: 9pt;
+    font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  label.normal { font-weight: normal; }
+
+  input[type="text"], textarea {
+    border: none;
+    border-bottom: 0.75px solid #000;
+    outline: none;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 9pt;
+    color: #000;
+    background: transparent;
+    width: 100%;
+    padding: 0 1pt 1pt;
+    line-height: 1.2;
+  }
+  input[type="text"]:focus, textarea:focus {
+    background: #fffde7;
+    border-bottom-color: #1565c0;
+  }
+  textarea {
+    border: 0.75px solid #000;
+    resize: vertical;
+    padding: 2pt;
+    min-height: 36pt;
+  }
+  textarea.lines {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent calc(1.4em - 1px),
+      #bbb calc(1.4em - 1px),
+      #bbb 1.4em
+    );
+    background-position: 0 1.4em;
+    line-height: 1.4em;
+    min-height: calc(1.4em * 3);
+    border: none;
+    border-bottom: 0.75px solid #000;
+  }
+
+  /* Checkboxes & radios */
+  .check-group {
+    display: flex;
+    align-items: center;
+    gap: 3pt;
+    flex-wrap: wrap;
+  }
+  .check-group span { font-size: 9pt; }
+  input[type="checkbox"], input[type="radio"] {
+    width: 9pt; height: 9pt;
+    accent-color: #000;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  /* ── Y/N inline ── */
+  .yn { display: flex; align-items: center; gap: 8pt; }
+  .yn-pair { display: flex; align-items: center; gap: 2pt; font-size: 9pt; }
+
+  /* ── Tables ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    margin-bottom: 6pt;
+  }
+  table th {
+    border: 0.5px solid #000;
+    background: #f0f0f0;
+    padding: 2pt 4pt;
+    font-weight: bold;
+    text-align: left;
+  }
+  table td {
+    border: 0.5px solid #000;
+    padding: 1pt 3pt;
+  }
+  table td input[type="text"] {
+    width: 100%;
+    border: none;
+    border-bottom: none;
+    background: transparent;
+    padding: 1pt;
+  }
+  table td input[type="text"]:focus { background: #fffde7; }
+
+  /* ── Divider ── */
+  hr.divider { border: none; border-top: 0.5px solid #555; margin: 8pt 0; }
+
+  /* ── Symptom grid ── */
+  .symptom-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3pt 20pt;
+    font-size: 9pt;
+    margin-bottom: 6pt;
+  }
+  .symptom-item { display: flex; align-items: center; gap: 4pt; }
+
+  /* ── Rating row ── */
+  .rating-row {
+    display: flex;
+    align-items: center;
+    gap: 6pt;
+    margin-bottom: 4pt;
+    font-size: 9pt;
+  }
+  .rating-row label { flex: 1; font-weight: normal; }
+  .rating-row input[type="text"] { width: 36pt; flex-shrink: 0; text-align: center; }
+  .rating-na { display: flex; align-items: center; gap: 2pt; flex-shrink: 0; }
+
+  /* ── Print styles ── */
+  @media print {
+    body { background: #fff; padding: 0; }
+    .page { box-shadow: none; margin: 0; padding: 0.5in 0.55in; width: 100%; min-height: auto; }
+    input[type="text"]:focus, textarea:focus { background: transparent; border-color: #000; }
+    .no-print { display: none !important; }
+    .page { page-break-after: always; }
+  }
+
+  /* ── Print button ── */
+  .toolbar {
+    width: 8.5in;
+    margin: 0 auto 10px;
+    display: flex;
+    gap: 10px;
+  }
+  .btn {
+    padding: 8px 20px;
+    font-size: 10pt;
+    font-family: sans-serif;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 1.5px solid #333;
+    background: #fff;
+    font-weight: 600;
+  }
+  .btn-print { background: #1a237e; color: #fff; border-color: #1a237e; }
+  .btn-print:hover { background: #283593; }
+
+  .page-label {
+    font-size: 8pt;
+    color: #888;
+    text-align: right;
+    margin-bottom: 4pt;
+    font-family: sans-serif;
+  }
+
+  /* Drug checklist */
+  .drug-list { columns: 2; font-size: 9pt; margin-bottom: 6pt; }
+  .drug-list .item { display: flex; align-items: center; gap: 4pt; break-inside: avoid; margin-bottom: 3pt; }
+
+  /* Family table compact */
+  .family-table th, .family-table td { font-size: 8.5pt; }
+</style>
+</head>
+<body>
+
+<div class="toolbar no-print">
+  <button class="btn btn-print" onclick="window.print()">🖨 Print / Save as PDF</button>
+  <button class="btn" onclick="clearForm()">✕ Clear Form</button>
+</div>
+
+<!-- ═══════════════════════════════ PAGE 1 ═══════════════════════════════ -->
+<div class="page">
+  <div class="page-label no-print">Page 1 of 8</div>
+
+  <div class="form-title">BACKGROUND QUESTIONNAIRE</div>
+  <div class="form-subtitle">Confidential Information</div>
+  <hr class="header-rule">
+  <div class="header-info">
+    Joseph F. Kulas, Ph.D., ABPP | Board Certified Clinical Neuropsychologist<br>
+    The Exchange, Suite 344, 270 Farmington Avenue, Farmington, CT 06032<br>
+    Phone: (203) 805-8527 | Fax: (888) 494-0373 | <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8dc7e2fee8fde5c6f8e1ecfea3dde5c9cde3e8f8ffe2fdfef4eee5e2e1e2eaf4eef9a3e2ffea">[email&#160;protected]</a>
+  </div>
+  <hr class="header-rule-thin">
+  <div class="header-intro">
+    In preparation for your Neuropsychological Evaluation, please complete the following questions as completely and in as much detail as possible. You may use the last page or additional sheets as needed. Please bring this completed questionnaire to your evaluation. Questions? Call Dr. Kulas at (203) 805-8527.
+  </div>
+
+  <div class="form-row">
+    <div class="form-group grow3"><label>Patient Name:</label><input type="text" name="patient_name"></div>
+    <div class="form-group grow2"><label>Date Completed:</label><input type="text" name="date_completed"></div>
+  </div>
+  <div class="form-row">
+    <div class="form-group grow3"><label>Address (Street):</label><input type="text" name="address_street"></div>
+    <div class="form-group grow2"><label>Phone H:</label><input type="text" name="phone_h"></div>
+  </div>
+  <div class="form-row">
+    <div class="form-group fixed-lg"><label>City:</label><input type="text" name="city"></div>
+    <div class="form-group fixed-xs"><label>State:</label><input type="text" name="state"></div>
+    <div class="form-group fixed-xs"><label>Zip:</label><input type="text" name="zip"></div>
+    <div class="form-group grow2"><label>Phone W:</label><input type="text" name="phone_w"></div>
+  </div>
+  <div class="form-row">
+    <div class="form-group fixed-md"><label>DOB:</label><input type="text" name="dob"></div>
+    <div class="form-group fixed-sm"><label>Age:</label><input type="text" name="age"></div>
+    <div class="form-group fixed-md"><label>Cell:</label><input type="text" name="cell"></div>
+    <div class="form-group grow2"><label>Phone Cell:</label><input type="text" name="phone_cell"></div>
+  </div>
+  <div class="form-row">
+    <div class="form-group" style="flex:0 0 auto;">
+      <label>Handedness:</label>
+      <div class="check-group" style="margin-left:4pt">
+        <input type="checkbox" name="hand_r" id="hand_r"><label for="hand_r" class="normal">R</label>
+        <input type="checkbox" name="hand_l" id="hand_l"><label for="hand_l" class="normal">L</label>
+        <input type="checkbox" name="hand_b" id="hand_b"><label for="hand_b" class="normal">B</label>
+      </div>
+    </div>
+    <div class="form-group fixed-lg"><label>Marital Status:</label><input type="text" name="marital_status"></div>
+    <div class="form-group grow2"><label>Education (Highest Grade):</label><input type="text" name="education"></div>
+  </div>
+
+  <hr class="divider">
+  <div class="section-note">If another person assisted in completing this form, provide information about him/her:</div>
+
+  <div class="form-row">
+    <div class="form-group grow2"><label>Name:</label><input type="text" name="helper_name"></div>
+    <div class="form-group grow2"><label>Relationship to Patient:</label><input type="text" name="helper_relationship"></div>
+  </div>
+  <div class="form-row">
+    <div class="form-group grow2"><label>Address (Street):</label><input type="text" name="helper_address"></div>
+    <div class="form-group grow2"><label>Phone H:</label><input type="text" name="helper_phone_h"></div>
+  </div>
+  <div class="form-row">
+    <div class="form-group fixed-lg"><label>City:</label><input type="text" name="helper_city"></div>
+    <div class="form-group fixed-xs"><label>State:</label><input type="text" name="helper_state"></div>
+    <div class="form-group grow2"><label>Phone W:</label><input type="text" name="helper_phone_w"></div>
+  </div>
+  <div class="form-row">
+    <div class="form-group fixed-sm"><label>Zip:</label><input type="text" name="helper_zip"></div>
+    <div class="form-group grow2"><label>Phone Cell:</label><input type="text" name="helper_phone_cell"></div>
+  </div>
+  <div class="form-row">
+    <label>If necessary, may this person be contacted for additional collateral information?</label>
+    <div class="check-group">
+      <input type="radio" name="contact_ok" id="contact_y" value="Y"><label for="contact_y" class="normal">Y</label>
+      <input type="radio" name="contact_ok" id="contact_n" value="N"><label for="contact_n" class="normal">N</label>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div class="form-row">
+    <div class="form-group"><label>Referral Information:</label><span style="font-size:9pt;margin:0 4pt;">Who referred you for this evaluation?</span><input type="text" name="referral_who"></div>
+  </div>
+  <div style="font-size:9pt;margin:6pt 0 2pt;">To the best of your knowledge, why were you referred for this assessment?</div>
+  <textarea class="lines" name="referral_why" rows="3"></textarea>
+  <div style="font-size:9pt;margin:6pt 0 2pt;">What would you like to learn about yourself or accomplish from this evaluation?</div>
+  <textarea class="lines" name="referral_goals" rows="3"></textarea>
+</div>
+
+<!-- ═══════════════════════════════ PAGE 2 ═══════════════════════════════ -->
+<div class="page">
+  <div class="page-label no-print">Page 2 of 8</div>
+  <div class="section-title">Medical Information</div>
+
+  <div style="font-size:9pt;margin-bottom:3pt;">Briefly describe what problems or symptoms led you to seek help from your current treatment providers:</div>
+  <textarea class="lines" name="medical_symptoms_desc" rows="3"></textarea>
+
+  <div style="font-size:9pt;margin:6pt 0 3pt;">List the five problems or symptoms that currently cause you the most difficulty (1 = worst):</div>
+  <div class="form-row"><label style="min-width:14pt;">1.</label><input type="text" name="symptom_1"></div>
+  <div class="form-row"><label style="min-width:14pt;">2.</label><input type="text" name="symptom_2"></div>
+  <div class="form-row"><label style="min-width:14pt;">3.</label><input type="text" name="symptom_3"></div>
+  <div class="form-row"><label style="min-width:14pt;">4.</label><input type="text" name="symptom_4"></div>
+  <div class="form-row"><label style="min-width:14pt;">5.</label><input type="text" name="symptom_5"></div>
+
+  <div class="form-row" style="margin-top:5pt;">
+    <div class="form-group"><label>Approximately when did these symptoms begin?</label><input type="text" name="symptoms_began"></div>
+  </div>
+  <div class="form-row">
+    <label>Have your symptoms:</label>
+    <div class="check-group">
+      <input type="radio" name="symptoms_trend" id="st_worse" value="Worse"><label for="st_worse" class="normal">Gotten Worse</label>
+      <input type="radio" name="symptoms_trend" id="st_better" value="Better"><label for="st_better" class="normal">Gotten Better</label>
+      <input type="radio" name="symptoms_trend" id="st_same" value="Same"><label for="st_same" class="normal">Stayed the Same</label>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group"><label>To the best of your knowledge, what is/was the cause(s) of these problems?</label><input type="text" name="symptoms_cause"></div>
+  </div>
+
+  <div style="font-size:10pt;font-weight:bold;margin:8pt 0 3pt;">Current Physicians / Therapists</div>
+  <div style="font-size:8.5pt;margin-bottom:3pt;">Please list all current treatment providers.</div>
+  <table>
+    <tr><th>Name</th><th>City, State</th><th>Phone</th><th>Specialty</th><th>How Long?</th></tr>
+    <tr><td><input type="text" name="prov1_name"></td><td><input type="text" name="prov1_city"></td><td><input type="text" name="prov1_phone"></td><td><input type="text" name="prov1_spec"></td><td><input type="text" name="prov1_dur"></td></tr>
+    <tr><td><input type="text" name="prov2_name"></td><td><input type="text" name="prov2_city"></td><td><input type="text" name="prov2_phone"></td><td><input type="text" name="prov2_spec"></td><td><input type="text" name="prov2_dur"></td></tr>
+    <tr><td><input type="text" name="prov3_name"></td><td><input type="text" name="prov3_city"></td><td><input type="text" name="prov3_phone"></td><td><input type="text" name="prov3_spec"></td><td><input type="text" name="prov3_dur"></td></tr>
+    <tr><td><input type="text" name="prov4_name"></td><td><input type="text" name="prov4_city"></td><td><input type="text" name="prov4_phone"></td><td><input type="text" name="prov4_spec"></td><td><input type="text" name="prov4_dur"></td></tr>
+  </table>
+
+  <div style="font-size:10pt;font-weight:bold;margin:8pt 0 3pt;">Current Medications</div>
+  <div style="font-size:8.5pt;margin-bottom:3pt;">Please list all medications you are taking (including over-the-counter drugs).</div>
+  <table>
+    <tr><th>Medication</th><th>Dosage</th><th>Reason Taking</th><th>How Long?</th></tr>
+    <tr><td><input type="text" name="med1_name"></td><td><input type="text" name="med1_dose"></td><td><input type="text" name="med1_reason"></td><td><input type="text" name="med1_dur"></td></tr>
+    <tr><td><input type="text" name="med2_name"></td><td><input type="text" name="med2_dose"></td><td><input type="text" name="med2_reason"></td><td><input type="text" name="med2_dur"></td></tr>
+    <tr><td><input type="text" name="med3_name"></td><td><input type="text" name="med3_dose"></td><td><input type="text" name="med3_reason"></td><td><input type="text" name="med3_dur"></td></tr>
+    <tr><td><input type="text" name="med4_name"></td><td><input type="text" name="med4_dose"></td><td><input type="text" name="med4_reason"></td><td><input type="text" name="med4_dur"></td></tr>
+    <tr><td><input type="text" name="med5_name"></td><td><input type="text" name="med5_dose"></td><td><input type="text" name="med5_reason"></td><td><input type="text" name="med5_dur"></td></tr>
+  </table>
+
+  <div style="font-size:10pt;font-weight:bold;margin:8pt 0 3pt;">Prior Psychological / Neuropsychological Evaluations or Neurological Tests</div>
+  <div style="font-size:8.5pt;margin-bottom:3pt;">Please list any previous evaluations/tests.</div>
+  <table>
+    <tr><th>Date</th><th>Doctor</th><th>City, State</th><th>Reason Evaluated</th></tr>
+    <tr><td><input type="text" name="eval1_date"></td><td><input type="text" name="eval1_doc"></td><td><input type="text" name="eval1_city"></td><td><input type="text" name="eval1_reason"></td></tr>
+    <tr><td><input type="text" name="eval2_date"></td><td><input type="text" name="eval2_doc"></td><td><input type="text" name="eval2_city"></td><td><input type="text" name="eval2_reason"></td></tr>
+    <tr><td><input type="text" name="eval3_date"></td><td><input type="text" name="eval3_doc"></td><td><input type="text" name="eval3_city"></td><td><input type="text" name="eval3_reason"></td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════ PAGE 3 ═══════════════════════════════ -->
+<div class="page">
+  <div class="page-label no-print">Page 3 of 8</div>
+
+  <div style="font-size:10pt;font-weight:bold;margin-bottom:3pt;">Medical Hospitalizations</div>
+  <div style="font-size:8.5pt;margin-bottom:3pt;">Please list any medical hospitalizations you have experienced.</div>
+  <table>
+    <tr><th>Date</th><th>Hospital Name / Location</th><th>Reason Hospitalized</th></tr>
+    <tr><td><input type="text" name="hosp1_date"></td><td><input type="text" name="hosp1_name"></td><td><input type="text" name="hosp1_reason"></td></tr>
+    <tr><td><input type="text" name="hosp2_date"></td><td><input type="text" name="hosp2_name"></td><td><input type="text" name="hosp2_reason"></td></tr>
+    <tr><td><input type="text" name="hosp3_date"></td><td><input type="text" name="hosp3_name"></td><td><input type="text" name="hosp3_reason"></td></tr>
+    <tr><td><input type="text" name="hosp4_date"></td><td><input type="text" name="hosp4_name"></td><td><input type="text" name="hosp4_reason"></td></tr>
+  </table>
+
+  <div style="font-size:10pt;font-weight:bold;margin:8pt 0 3pt;">Medical History</div>
+  <div style="font-size:8.5pt;margin-bottom:4pt;">Please note if you have any of the diseases/conditions below and date diagnosed. Also note if any relatives have these diseases.</div>
+
+  <table class="family-table">
+    <tr><th style="width:45%">Condition</th><th style="width:10%">Self</th><th style="width:25%">Date Diagnosed</th><th style="width:20%">Relative</th></tr>
+    <tr><td>Diabetes</td><td><input type="checkbox" name="cond_diabetes_self"></td><td><input type="text" name="cond_diabetes_date"></td><td><input type="text" name="cond_diabetes_rel"></td></tr>
+    <tr><td>Heart Disease</td><td><input type="checkbox" name="cond_heart_self"></td><td><input type="text" name="cond_heart_date"></td><td><input type="text" name="cond_heart_rel"></td></tr>
+    <tr><td>High Cholesterol</td><td><input type="checkbox" name="cond_chol_self"></td><td><input type="text" name="cond_chol_date"></td><td><input type="text" name="cond_chol_rel"></td></tr>
+    <tr><td>High Blood Pressure</td><td><input type="checkbox" name="cond_bp_self"></td><td><input type="text" name="cond_bp_date"></td><td><input type="text" name="cond_bp_rel"></td></tr>
+    <tr><td>Cancer (type: <input type="text" name="cond_cancer_type" style="width:80pt">)</td><td><input type="checkbox" name="cond_cancer_self"></td><td><input type="text" name="cond_cancer_date"></td><td><input type="text" name="cond_cancer_rel"></td></tr>
+    <tr><td>Chemotherapy / Radiation</td><td><input type="checkbox" name="cond_chemo_self"></td><td><input type="text" name="cond_chemo_date"></td><td><input type="text" name="cond_chemo_rel"></td></tr>
+    <tr><td>Hormonal Problems</td><td><input type="checkbox" name="cond_hormone_self"></td><td><input type="text" name="cond_hormone_date"></td><td><input type="text" name="cond_hormone_rel"></td></tr>
+    <tr><td>Lung / Breathing Problems</td><td><input type="checkbox" name="cond_lung_self"></td><td><input type="text" name="cond_lung_date"></td><td><input type="text" name="cond_lung_rel"></td></tr>
+    <tr><td>Near Drowning</td><td><input type="checkbox" name="cond_drown_self"></td><td><input type="text" name="cond_drown_date"></td><td><input type="text" name="cond_drown_rel"></td></tr>
+    <tr><td>Anemia</td><td><input type="checkbox" name="cond_anemia_self"></td><td><input type="text" name="cond_anemia_date"></td><td><input type="text" name="cond_anemia_rel"></td></tr>
+    <tr><td>HIV / AIDS</td><td><input type="checkbox" name="cond_hiv_self"></td><td><input type="text" name="cond_hiv_date"></td><td><input type="text" name="cond_hiv_rel"></td></tr>
+    <tr><td>Liver Problems</td><td><input type="checkbox" name="cond_liver_self"></td><td><input type="text" name="cond_liver_date"></td><td><input type="text" name="cond_liver_rel"></td></tr>
+    <tr><td>Kidney Problems</td><td><input type="checkbox" name="cond_kidney_self"></td><td><input type="text" name="cond_kidney_date"></td><td><input type="text" name="cond_kidney_rel"></td></tr>
+    <tr><td>Severe Allergic Reactions</td><td><input type="checkbox" name="cond_allergy_self"></td><td><input type="text" name="cond_allergy_date"></td><td><input type="text" name="cond_allergy_rel"></td></tr>
+    <tr><td>High Fever (&gt;104°F)</td><td><input type="checkbox" name="cond_fever_self"></td><td><input type="text" name="cond_fever_date"></td><td><input type="text" name="cond_fever_rel"></td></tr>
+    <tr><td>Electric Shock</td><td><input type="checkbox" name="cond_shock_self"></td><td><input type="text" name="cond_shock_date"></td><td><input type="text" name="cond_shock_rel"></td></tr>
+    <tr><td>Birth / Developmental Problems</td><td><input type="checkbox" name="cond_birth_self"></td><td><input type="text" name="cond_birth_date"></td><td><input type="text" name="cond_birth_rel"></td></tr>
+    <tr><td>Epilepsy</td><td><input type="checkbox" name="cond_epilepsy_self"></td><td><input type="text" name="cond_epilepsy_date"></td><td><input type="text" name="cond_epilepsy_rel"></td></tr>
+    <tr><td>Senility / Dementia</td><td><input type="checkbox" name="cond_dementia_self"></td><td><input type="text" name="cond_dementia_date"></td><td><input type="text" name="cond_dementia_rel"></td></tr>
+    <tr><td>Stroke</td><td><input type="checkbox" name="cond_stroke_self"></td><td><input type="text" name="cond_stroke_date"></td><td><input type="text" name="cond_stroke_rel"></td></tr>
+    <tr><td>TIA</td><td><input type="checkbox" name="cond_tia_self"></td><td><input type="text" name="cond_tia_date"></td><td><input type="text" name="cond_tia_rel"></td></tr>
+    <tr><td>AVM</td><td><input type="checkbox" name="cond_avm_self"></td><td><input type="text" name="cond_avm_date"></td><td><input type="text" name="cond_avm_rel"></td></tr>
+    <tr><td>Traumatic Brain Injury / Concussion</td><td><input type="checkbox" name="cond_tbi_self"></td><td><input type="text" name="cond_tbi_date"></td><td><input type="text" name="cond_tbi_rel"></td></tr>
+    <tr><td>Loss of Consciousness</td><td><input type="checkbox" name="cond_loc_self"></td><td><input type="text" name="cond_loc_date"></td><td><input type="text" name="cond_loc_rel"></td></tr>
+    <tr><td>Lyme Disease</td><td><input type="checkbox" name="cond_lyme_self"></td><td><input type="text" name="cond_lyme_date"></td><td><input type="text" name="cond_lyme_rel"></td></tr>
+    <tr><td>Meningitis</td><td><input type="checkbox" name="cond_mening_self"></td><td><input type="text" name="cond_mening_date"></td><td><input type="text" name="cond_mening_rel"></td></tr>
+    <tr><td>Encephalitis</td><td><input type="checkbox" name="cond_enceph_self"></td><td><input type="text" name="cond_enceph_date"></td><td><input type="text" name="cond_enceph_rel"></td></tr>
+    <tr><td>Toxic Exposure</td><td><input type="checkbox" name="cond_toxic_self"></td><td><input type="text" name="cond_toxic_date"></td><td><input type="text" name="cond_toxic_rel"></td></tr>
+    <tr><td>Brain Cyst / Growth</td><td><input type="checkbox" name="cond_cyst_self"></td><td><input type="text" name="cond_cyst_date"></td><td><input type="text" name="cond_cyst_rel"></td></tr>
+    <tr><td>Other: <input type="text" name="cond_other1_name" style="width:100pt"></td><td><input type="checkbox" name="cond_other1_self"></td><td><input type="text" name="cond_other1_date"></td><td><input type="text" name="cond_other1_rel"></td></tr>
+    <tr><td>Other: <input type="text" name="cond_other2_name" style="width:100pt"></td><td><input type="checkbox" name="cond_other2_self"></td><td><input type="text" name="cond_other2_date"></td><td><input type="text" name="cond_other2_rel"></td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════ PAGE 4 ═══════════════════════════════ -->
+<div class="page">
+  <div class="page-label no-print">Page 4 of 8</div>
+  <div style="font-size:9pt;margin-bottom:6pt;">Please place a check (✓) before each symptom that applies to you:</div>
+
+  <div style="font-size:10pt;font-weight:bold;margin-bottom:4pt;border-bottom:0.5px solid #000;padding-bottom:2pt;">Physical Symptoms</div>
+  <div class="symptom-grid">
+    <div class="symptom-item"><input type="checkbox" name="sym_walk"><span>Difficulty Walking</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_balance"><span>Balance Problem / Dizziness</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_strength"><span>Reduced Strength (Weakness)</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_tremor"><span>Tremor / Abnormal Movements</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_touch"><span>Reduced Sense of Touch</span></div>
+    <div class="symptom-item"></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_hearing"><span>Hearing Problems</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_ringing"><span>Ringing in Ears</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_vision"><span>Vision Problems</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_doublevision"><span>Double Vision</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_smell"><span>Reduced Sense of Smell</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_taste"><span>Reduced Sense of Taste</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_pain"><span>Pain Problems — Where? <input type="text" name="sym_pain_where" style="width:80pt"></span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_headache"><span>Headaches</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_incontinence"><span>Incontinence — Where? <input type="text" name="sym_incont_where" style="width:80pt"></span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_sexual"><span>Sexual Dysfunction</span></div>
+  </div>
+  <div class="form-row"><label class="normal">Other:</label><input type="text" name="sym_physical_other"></div>
+
+  <div style="font-size:10pt;font-weight:bold;margin:10pt 0 4pt;border-bottom:0.5px solid #000;padding-bottom:2pt;">Cognitive Symptoms</div>
+  <div class="symptom-grid">
+    <div class="symptom-item"><input type="checkbox" name="sym_memory"><span>Memory Problems</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_speech"><span>Speech / Language Problems</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_attention"><span>Attention / Concentration Difficulty</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_speed"><span>Processing Speed Difficulty</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_problem"><span>Problem Solving Problems</span></div>
+  </div>
+  <div class="form-row"><label class="normal">Other:</label><input type="text" name="sym_cognitive_other"></div>
+
+  <div style="font-size:10pt;font-weight:bold;margin:10pt 0 4pt;border-bottom:0.5px solid #000;padding-bottom:2pt;">Emotional Symptoms</div>
+  <div class="symptom-grid">
+    <div class="symptom-item"><input type="checkbox" name="sym_depression"><span>Depression / Sadness</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_selfdestructive"><span>Self-Destructive Feelings</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_anxiety"><span>Anxiety / Nervousness</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_anger"><span>Anger / Irritability</span></div>
+    <div class="symptom-item"><input type="checkbox" name="sym_bizarre"><span>Bizarre / Strange Feelings</span></div>
+  </div>
+  <div class="form-row"><label class="normal">Other:</label><input type="text" name="sym_emotional_other"></div>
+
+  <hr class="divider" style="margin-top:10pt;">
+  <div style="font-size:10pt;font-weight:bold;margin-bottom:4pt;">Daily Functioning</div>
+  <div style="font-size:8.5pt;margin-bottom:4pt;">Note how much assistance you require for each daily task (1–10 scale).<br>
+    <strong>1 = Fully Independent &nbsp;·&nbsp; 5–6 = Moderate Assistance &nbsp;·&nbsp; 10 = Max Assistance</strong> &nbsp;· Check N/A if not applicable.</div>
+
+  <table>
+    <tr><th style="width:60%">Task</th><th style="width:20%">Rating (1–10)</th><th style="width:20%">N/A</th></tr>
+    <tr><td>Basic ADLs (e.g., dressing, bathing, feeding)</td><td><input type="text" name="adl_basic"></td><td><input type="checkbox" name="adl_basic_na"> N/A</td></tr>
+    <tr><td>Complex ADLs (e.g., meal planning, trip planning)</td><td><input type="text" name="adl_complex"></td><td><input type="checkbox" name="adl_complex_na"> N/A</td></tr>
+    <tr><td>Money Management (e.g., paying bills, balancing checkbook)</td><td><input type="text" name="adl_money"></td><td><input type="checkbox" name="adl_money_na"> N/A</td></tr>
+    <tr><td>Medication Management</td><td><input type="text" name="adl_meds"></td><td><input type="checkbox" name="adl_meds_na"> N/A</td></tr>
+    <tr><td>Driving</td><td><input type="text" name="adl_driving"></td><td><input type="checkbox" name="adl_driving_na"> N/A</td></tr>
+  </table>
+</div>
+
+<!-- ═══════════════════════════════ PAGE 5 ═══════════════════════════════ -->
+<div class="page">
+  <div class="page-label no-print">Page 5 of 8</div>
+
+  <div style="font-size:11pt;font-weight:bold;margin-bottom:6pt;">Habits — Alcohol</div>
+  <div style="font-size:9pt;">
+  <div class="form-row"><label>Do you drink alcohol?</label><div class="yn"><div class="yn-pair"><input type="radio" name="alc_drink" id="alc_y" value="Y"><label for="alc_y" class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="alc_drink" id="alc_n" value="N"><label for="alc_n" class="normal">N</label></div></div><label style="margin-left:10pt;">If no, did you drink in the past?</label><div class="yn"><div class="yn-pair"><input type="radio" name="alc_past" id="alcp_y" value="Y"><label for="alcp_y" class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="alc_past" id="alcp_n" value="N"><label for="alcp_n" class="normal">N</label></div></div></div>
+  <div class="form-row"><div class="form-group"><label>Average current alcohol consumption:</label><input type="text" name="alc_amount"></div><div class="form-group"><label>Preferred drink:</label><input type="text" name="alc_type"></div></div>
+  </div>
+
+  <style>.yn-q{display:flex;align-items:center;gap:6pt;margin-bottom:4pt;font-size:9pt;} .yn-q label{flex:1;} .yn-q .yn{flex-shrink:0;}</style>
+  <div class="yn-q"><label>Was there a time when your alcohol consumption was heavier than present?</label><div class="yn"><div class="yn-pair"><input type="radio" name="alc_heavier" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="alc_heavier" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Have you had problems due to alcohol use (e.g., injuries, legal, family)?</label><div class="yn"><div class="yn-pair"><input type="radio" name="alc_problems" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="alc_problems" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Have you experienced withdrawal symptoms after stopping alcohol?</label><div class="yn"><div class="yn-pair"><input type="radio" name="alc_withdraw" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="alc_withdraw" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Have you ever had a blackout?</label><div class="yn"><div class="yn-pair"><input type="radio" name="alc_blackout" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="alc_blackout" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Is there a history of alcohol abuse in your family?</label><div class="yn"><div class="yn-pair"><input type="radio" name="alc_family" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="alc_family" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Have you been involved in alcohol treatment?</label><div class="yn"><div class="yn-pair"><input type="radio" name="alc_treatment" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="alc_treatment" value="N"><label class="normal">N</label></div></div></div>
+
+  <hr class="divider" style="margin-top:8pt;">
+  <div style="font-size:11pt;font-weight:bold;margin-bottom:6pt;">Habits — Illicit Drugs</div>
+
+  <div class="yn-q"><label>Do you use illicit/street drugs?</label><div class="yn"><div class="yn-pair"><input type="radio" name="drug_use" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="drug_use" value="N"><label class="normal">N</label></div></div><label style="margin-left:10pt;">If no, did you use drugs in the past?</label><div class="yn"><div class="yn-pair"><input type="radio" name="drug_past" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="drug_past" value="N"><label class="normal">N</label></div></div></div>
+
+  <div style="font-size:9pt;margin-bottom:4pt;">Check all that you have used and provide details:</div>
+  <div class="drug-list">
+    <div class="item"><input type="checkbox" name="drug_marijuana"><span>Marijuana / Hashish</span></div>
+    <div class="item"><input type="checkbox" name="drug_amphetamines"><span>Amphetamines (e.g., speed)</span></div>
+    <div class="item"><input type="checkbox" name="drug_cocaine"><span>Cocaine / Crack</span></div>
+    <div class="item"><input type="checkbox" name="drug_hallucinogens"><span>Hallucinogens (e.g., LSD)</span></div>
+    <div class="item"><input type="checkbox" name="drug_inhalants"><span>Inhalants (e.g., nitrous oxide, glue)</span></div>
+    <div class="item"><input type="checkbox" name="drug_opiates"><span>Opiates (e.g., heroin, morphine)</span></div>
+    <div class="item"><input type="checkbox" name="drug_designer"><span>Designer Drugs (e.g., Ecstasy, GHB)</span></div>
+    <div class="item"><input type="checkbox" name="drug_prescription"><span>Prescription Drugs (e.g., Oxycontin, Xanax)</span></div>
+    <div class="item"><input type="checkbox" name="drug_other"><span>Others</span></div>
+  </div>
+
+  <div class="yn-q"><label>Have you ever used IV drugs?</label><div class="yn"><div class="yn-pair"><input type="radio" name="drug_iv" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="drug_iv" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Have you ever overdosed on drugs?</label><div class="yn"><div class="yn-pair"><input type="radio" name="drug_od" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="drug_od" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Have you had problems from drug usage (e.g., legal, family conflicts)?</label><div class="yn"><div class="yn-pair"><input type="radio" name="drug_problems" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="drug_problems" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Is there a history of drug abuse in your family?</label><div class="yn"><div class="yn-pair"><input type="radio" name="drug_family" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="drug_family" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Have you been involved in drug treatment?</label><div class="yn"><div class="yn-pair"><input type="radio" name="drug_treatment" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="drug_treatment" value="N"><label class="normal">N</label></div></div></div>
+
+  <hr class="divider" style="margin-top:8pt;">
+  <div style="font-size:11pt;font-weight:bold;margin-bottom:6pt;">Habits — Tobacco, Caffeine &amp; Other Substances</div>
+  <div class="yn-q"><label>Do you smoke or use smokeless tobacco?</label><div class="yn"><div class="yn-pair"><input type="radio" name="tobacco" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="tobacco" value="N"><label class="normal">N</label></div></div><div class="form-group" style="margin-left:10pt;"><label>Average daily use:</label><input type="text" name="tobacco_amount" style="width:80pt"></div></div>
+  <div class="yn-q"><label>Do you drink caffeinated beverages?</label><div class="yn"><div class="yn-pair"><input type="radio" name="caffeine" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="caffeine" value="N"><label class="normal">N</label></div></div><div class="form-group" style="margin-left:10pt;"><label>Average daily use:</label><input type="text" name="caffeine_amount" style="width:80pt"></div></div>
+  <div class="yn-q"><label>Do you regularly use over-the-counter medicines (e.g., sleeping, diet, or pain drugs)?</label><div class="yn"><div class="yn-pair"><input type="radio" name="otc" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="otc" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Have you ever used performance-enhancing drugs/substances (e.g., steroids)?</label><div class="yn"><div class="yn-pair"><input type="radio" name="steroids" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="steroids" value="N"><label class="normal">N</label></div></div></div>
+</div>
+
+<!-- ═══════════════════════════════ PAGE 6 ═══════════════════════════════ -->
+<div class="page">
+  <div class="page-label no-print">Page 6 of 8</div>
+  <div style="font-size:11pt;font-weight:bold;margin-bottom:6pt;">Mental Health History</div>
+  <div style="font-size:8.5pt;margin-bottom:3pt;">Please list any psychiatric/psychological care you have received.</div>
+  <table>
+    <tr><th>Dates</th><th>Provider Name / Location</th><th>Reason Treated</th></tr>
+    <tr><td><input type="text" name="mh1_dates"></td><td><input type="text" name="mh1_provider"></td><td><input type="text" name="mh1_reason"></td></tr>
+    <tr><td><input type="text" name="mh2_dates"></td><td><input type="text" name="mh2_provider"></td><td><input type="text" name="mh2_reason"></td></tr>
+    <tr><td><input type="text" name="mh3_dates"></td><td><input type="text" name="mh3_provider"></td><td><input type="text" name="mh3_reason"></td></tr>
+    <tr><td><input type="text" name="mh4_dates"></td><td><input type="text" name="mh4_provider"></td><td><input type="text" name="mh4_reason"></td></tr>
+  </table>
+
+  <div class="yn-q"><label>Have you ever been psychiatrically hospitalized?</label><div class="yn"><div class="yn-pair"><input type="radio" name="psych_hosp" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="psych_hosp" value="N"><label class="normal">N</label></div></div></div>
+  <div style="font-size:8.5pt;margin-bottom:3pt;margin-top:4pt;">If yes:</div>
+  <table>
+    <tr><th>Dates</th><th>Hospital Name / Location</th><th>Reason Hospitalized</th></tr>
+    <tr><td><input type="text" name="ph1_dates"></td><td><input type="text" name="ph1_hosp"></td><td><input type="text" name="ph1_reason"></td></tr>
+    <tr><td><input type="text" name="ph2_dates"></td><td><input type="text" name="ph2_hosp"></td><td><input type="text" name="ph2_reason"></td></tr>
+  </table>
+
+  <div class="yn-q" style="margin-top:4pt;"><label>Have you been prescribed psychiatric medications?</label><div class="yn"><div class="yn-pair"><input type="radio" name="psych_meds" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="psych_meds" value="N"><label class="normal">N</label></div></div></div>
+  <div style="font-size:8.5pt;margin-bottom:3pt;margin-top:4pt;">If yes:</div>
+  <table>
+    <tr><th>Dates</th><th>Drug Name</th><th>Reason Taken</th></tr>
+    <tr><td><input type="text" name="pm1_dates"></td><td><input type="text" name="pm1_drug"></td><td><input type="text" name="pm1_reason"></td></tr>
+    <tr><td><input type="text" name="pm2_dates"></td><td><input type="text" name="pm2_drug"></td><td><input type="text" name="pm2_reason"></td></tr>
+    <tr><td><input type="text" name="pm3_dates"></td><td><input type="text" name="pm3_drug"></td><td><input type="text" name="pm3_reason"></td></tr>
+  </table>
+
+  <div class="yn-q"><label>Have you ever undergone Electroconvulsive Therapy (ECT)?</label><div class="yn"><div class="yn-pair"><input type="radio" name="ect" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="ect" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Have any family members received treatment for psychiatric/psychological problems?</label><div class="yn"><div class="yn-pair"><input type="radio" name="psych_family" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="psych_family" value="N"><label class="normal">N</label></div></div></div>
+
+  <hr class="divider" style="margin-top:8pt;">
+  <div style="font-size:11pt;font-weight:bold;margin-bottom:6pt;">Personal Information</div>
+  <div class="form-row"><div class="form-group"><label>Where were you born?</label><input type="text" name="birthplace"></div></div>
+  <div class="form-row">
+    <label>Birth type:</label>
+    <div class="check-group">
+      <input type="radio" name="birth_type" value="Single" id="bt_single"><label for="bt_single" class="normal">Single Birth</label>
+      <input type="radio" name="birth_type" value="Twin" id="bt_twin"><label for="bt_twin" class="normal">Twin</label>
+      <input type="radio" name="birth_type" value="Triplet" id="bt_trip"><label for="bt_trip" class="normal">Triplet</label>
+      <input type="radio" name="birth_type" value="Other" id="bt_other"><label for="bt_other" class="normal">Other:</label>
+      <input type="text" name="birth_type_other" style="width:80pt">
+    </div>
+  </div>
+  <div class="yn-q"><label>Were there any problems or complications with your birth?</label><div class="yn"><div class="yn-pair"><input type="radio" name="birth_problems" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="birth_problems" value="N"><label class="normal">N</label></div></div></div>
+  <div class="form-row"><div class="form-group"><label>Difficulties with early development (e.g., walking, talking, toileting):</label><input type="text" name="dev_difficulties"></div></div>
+
+  <div style="font-size:10pt;font-weight:bold;margin:8pt 0 3pt;">Family of Origin</div>
+  <table class="family-table">
+    <tr><th></th><th>Age (or age at death)</th><th>Education</th><th>Primary Job</th><th>Health</th></tr>
+    <tr><td><strong>Father</strong></td><td><input type="text" name="fam_father_age"></td><td><input type="text" name="fam_father_edu"></td><td><input type="text" name="fam_father_job"></td><td><input type="text" name="fam_father_health"></td></tr>
+    <tr><td><strong>Mother</strong></td><td><input type="text" name="fam_mother_age"></td><td><input type="text" name="fam_mother_edu"></td><td><input type="text" name="fam_mother_job"></td><td><input type="text" name="fam_mother_health"></td></tr>
+    <tr><td><strong>Sibling 1</strong></td><td><input type="text" name="fam_sib1_age"></td><td><input type="text" name="fam_sib1_edu"></td><td><input type="text" name="fam_sib1_job"></td><td><input type="text" name="fam_sib1_health"></td></tr>
+    <tr><td><strong>Sibling 2</strong></td><td><input type="text" name="fam_sib2_age"></td><td><input type="text" name="fam_sib2_edu"></td><td><input type="text" name="fam_sib2_job"></td><td><input type="text" name="fam_sib2_health"></td></tr>
+    <tr><td><strong>Sibling 3</strong></td><td><input type="text" name="fam_sib3_age"></td><td><input type="text" name="fam_sib3_edu"></td><td><input type="text" name="fam_sib3_job"></td><td><input type="text" name="fam_sib3_health"></td></tr>
+  </table>
+  <div class="form-row"><div class="form-group"><label>Current Marital Status:</label><input type="text" name="marital_current"></div><div class="form-group"><label>Dates of marriage/divorce:</label><input type="text" name="marital_dates"></div></div>
+</div>
+
+<!-- ═══════════════════════════════ PAGE 7 ═══════════════════════════════ -->
+<div class="page">
+  <div class="page-label no-print">Page 7 of 8</div>
+
+  <div style="font-size:10pt;font-weight:bold;margin-bottom:3pt;">Children</div>
+  <table>
+    <tr><th>Name</th><th>Gender (M/F)</th><th>Age</th><th>Health</th></tr>
+    <tr><td><input type="text" name="child1_name"></td><td><input type="text" name="child1_gender"></td><td><input type="text" name="child1_age"></td><td><input type="text" name="child1_health"></td></tr>
+    <tr><td><input type="text" name="child2_name"></td><td><input type="text" name="child2_gender"></td><td><input type="text" name="child2_age"></td><td><input type="text" name="child2_health"></td></tr>
+    <tr><td><input type="text" name="child3_name"></td><td><input type="text" name="child3_gender"></td><td><input type="text" name="child3_age"></td><td><input type="text" name="child3_health"></td></tr>
+    <tr><td><input type="text" name="child4_name"></td><td><input type="text" name="child4_gender"></td><td><input type="text" name="child4_age"></td><td><input type="text" name="child4_health"></td></tr>
+  </table>
+  <div class="form-row"><div class="form-group"><label>Religious Denomination:</label><input type="text" name="religion"></div></div>
+  <div class="form-row"><div class="form-group"><label>Recreational interests or hobbies (and how affected by your medical situation):</label></div></div>
+  <textarea class="lines" name="hobbies" rows="3"></textarea>
+
+  <hr class="divider" style="margin-top:8pt;">
+  <div style="font-size:11pt;font-weight:bold;margin-bottom:6pt;">Education</div>
+  <div class="form-row">
+    <div class="form-group"><label>Highest grade/degree completed:</label><input type="text" name="edu_highest"></div>
+    <div class="form-group"><label>Year graduated:</label><input type="text" name="edu_year"></div>
+  </div>
+  <div style="font-size:8.5pt;margin-bottom:3pt;">Colleges, technical, and/or vocational schools attended (most recent first):</div>
+  <table>
+    <tr><th>Name</th><th>Years Attended</th><th>Major / Primary Area of Study</th></tr>
+    <tr><td><input type="text" name="school1_name"></td><td><input type="text" name="school1_years"></td><td><input type="text" name="school1_major"></td></tr>
+    <tr><td><input type="text" name="school2_name"></td><td><input type="text" name="school2_years"></td><td><input type="text" name="school2_major"></td></tr>
+    <tr><td><input type="text" name="school3_name"></td><td><input type="text" name="school3_years"></td><td><input type="text" name="school3_major"></td></tr>
+  </table>
+  <div class="form-row"><div class="form-group"><label>Academic strengths in school:</label><input type="text" name="edu_strengths"></div></div>
+  <div class="form-row"><div class="form-group"><label>Academic weaknesses in school:</label><input type="text" name="edu_weaknesses"></div></div>
+  <div class="yn-q"><label>Were you ever held back any grades?</label><div class="yn"><div class="yn-pair"><input type="radio" name="held_back" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="held_back" value="N"><label class="normal">N</label></div></div><div class="form-group" style="margin-left:8pt;"><label>If so, which grades?</label><input type="text" name="held_back_grades" style="width:80pt"></div></div>
+  <div class="yn-q"><label>Were you ever diagnosed as having a learning disability?</label><div class="yn"><div class="yn-pair"><input type="radio" name="learning_disability" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="learning_disability" value="N"><label class="normal">N</label></div></div></div>
+  <div class="form-row"><div class="form-group"><label>Special assistance or help you received in school:</label><input type="text" name="edu_special_help"></div></div>
+  <div class="form-row"><div class="form-group"><label>Behavior problems in school:</label><input type="text" name="edu_behavior"></div></div>
+  <div class="form-row"><div class="form-group"><label>Extracurricular activities (e.g., sports, clubs):</label><input type="text" name="edu_extracurricular"></div></div>
+  <div class="form-row"><div class="form-group"><label>Future education plans:</label><input type="text" name="edu_future"></div></div>
+
+  <hr class="divider" style="margin-top:8pt;">
+  <div style="font-size:11pt;font-weight:bold;margin-bottom:6pt;">Employment</div>
+  <div class="yn-q"><label>Are you currently employed?</label><div class="yn"><div class="yn-pair"><input type="radio" name="employed" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="employed" value="N"><label class="normal">N</label></div></div><div class="form-group" style="margin-left:8pt;"><label>If not, when did you last work?</label><input type="text" name="last_worked" style="width:80pt"></div></div>
+  <div style="font-size:8.5pt;margin-bottom:3pt;">Work history (current job first):</div>
+  <table>
+    <tr><th>Occupation</th><th>From</th><th>To</th><th>Reason for Leaving</th></tr>
+    <tr><td><input type="text" name="job1_title"></td><td><input type="text" name="job1_from"></td><td><input type="text" name="job1_to"></td><td><input type="text" name="job1_reason"></td></tr>
+    <tr><td><input type="text" name="job2_title"></td><td><input type="text" name="job2_from"></td><td><input type="text" name="job2_to"></td><td><input type="text" name="job2_reason"></td></tr>
+    <tr><td><input type="text" name="job3_title"></td><td><input type="text" name="job3_from"></td><td><input type="text" name="job3_to"></td><td><input type="text" name="job3_reason"></td></tr>
+    <tr><td><input type="text" name="job4_title"></td><td><input type="text" name="job4_from"></td><td><input type="text" name="job4_to"></td><td><input type="text" name="job4_reason"></td></tr>
+  </table>
+  <div class="form-row"><div class="form-group"><label>Most significant job:</label><input type="text" name="job_significant"></div></div>
+  <div class="form-row"><div class="form-group"><label>How current illness has affected ability to work:</label><input type="text" name="job_illness_impact"></div></div>
+  <div class="form-row"><div class="form-group"><label>Future employment plans:</label><input type="text" name="job_future"></div></div>
+</div>
+
+<!-- ═══════════════════════════════ PAGE 8 ═══════════════════════════════ -->
+<div class="page">
+  <div class="page-label no-print">Page 8 of 8</div>
+  <div style="font-size:11pt;font-weight:bold;margin-bottom:6pt;">Compensation / Litigation</div>
+  <div class="yn-q"><label>Do you currently receive Social Security Benefits?</label><div class="yn"><div class="yn-pair"><input type="radio" name="comp_ss" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="comp_ss" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Do you currently receive Worker's Compensation Benefits?</label><div class="yn"><div class="yn-pair"><input type="radio" name="comp_wc" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="comp_wc" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Are you currently receiving disability compensation as a result of your illness?</label><div class="yn"><div class="yn-pair"><input type="radio" name="comp_disab_illness" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="comp_disab_illness" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Are you currently receiving disability compensation for past illnesses?</label><div class="yn"><div class="yn-pair"><input type="radio" name="comp_disab_past" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="comp_disab_past" value="N"><label class="normal">N</label></div></div></div>
+  <div class="yn-q"><label>Are you currently involved in a lawsuit or other legal action?</label><div class="yn"><div class="yn-pair"><input type="radio" name="comp_lawsuit" value="Y"><label class="normal">Y</label></div><div class="yn-pair"><input type="radio" name="comp_lawsuit" value="N"><label class="normal">N</label></div></div></div>
+
+  <div style="font-size:10pt;font-weight:bold;margin:10pt 0 3pt;">Current Attorney</div>
+  <div style="font-size:8.5pt;margin-bottom:3pt;">Please list the names of any legal counsel currently assisting you.</div>
+  <table>
+    <tr><th>Name</th><th>City, State</th><th>Phone</th><th>Reason</th></tr>
+    <tr><td><input type="text" name="atty1_name"></td><td><input type="text" name="atty1_city"></td><td><input type="text" name="atty1_phone"></td><td><input type="text" name="atty1_reason"></td></tr>
+    <tr><td><input type="text" name="atty2_name"></td><td><input type="text" name="atty2_city"></td><td><input type="text" name="atty2_phone"></td><td><input type="text" name="atty2_reason"></td></tr>
+  </table>
+
+  <!-- Submit section -->
+  <div class="no-print" style="margin-top:24pt;padding:16pt;background:#f0f4ff;border:1.5px solid #1a237e;border-radius:6px;font-family:sans-serif;">
+    <div style="font-size:11pt;font-weight:bold;color:#1a237e;margin-bottom:8pt;">Submit Your Completed Form</div>
+    <div style="font-size:9pt;color:#333;margin-bottom:12pt;">
+      Click the button below to securely submit your form. You will be asked to sign in with your 
+      Microsoft account. Your information is transmitted securely and stored in compliance with HIPAA.
+    </div>
+    <div id="submitStatus" style="display:none;padding:10pt;border-radius:4px;margin-bottom:10pt;font-size:9pt;"></div>
+    <button class="btn btn-submit" onclick="submitForm()" id="submitBtn">
+      ✔ Submit Form Securely
+    </button>
+    <div style="font-size:8pt;color:#777;margin-top:8pt;">
+      After submitting, please print a copy for your records using the Print button above.
+    </div>
+  </div>
+</div>
+
+<style>
+.btn-submit {
+  background: #1a237e;
+  color: #fff;
+  border: none;
+  padding: 10px 28px;
+  font-size: 11pt;
+  font-family: sans-serif;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.btn-submit:hover { background: #283593; }
+.btn-submit:disabled { background: #9fa8da; cursor: not-allowed; }
+</style>
+
+<script>
+// ════════════════════════════════════════════════════════════════
+// CONFIGURATION — replace these three values before deploying
+// ════════════════════════════════════════════════════════════════
+const CLIENT_ID    = '4dd54839-d92d-4c1f-86a6-c862aba5fe06';      // From Step 1 of setup guide
+const TENANT_ID    = '7c415c58-538e-4a4a-8382-86289b4e6798';      // From Step 1 of setup guide
+const REDIRECT_URI = 'http://https://elvida73.github.io/intake-form';   // Must match Azure app registration
+const FOLDER_PATH  = 'PatientIntakeForms';  // OneDrive folder name
+// ════════════════════════════════════════════════════════════════
+
+const SCOPES = ['Files.ReadWrite', 'offline_access'];
+const AUTH_URL = `https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/authorize`;
+const TOKEN_URL = `https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token`;
+
+// ── Collect all form data into a structured object ──────────────
+function collectFormData() {
+  const data = {};
+  // Text inputs
+  document.querySelectorAll('input[type="text"], textarea').forEach(el => {
+    if (el.name) data[el.name] = el.value.replace(/'/g, "''"); // escape single quotes
+  });
+  // Checkboxes
+  document.querySelectorAll('input[type="checkbox"]').forEach(el => {
+    if (el.name) data[el.name] = el.checked ? 'true' : 'false';
+  });
+  // Radio buttons (only capture checked ones)
+  document.querySelectorAll('input[type="radio"]:checked').forEach(el => {
+    if (el.name) data[el.name] = el.value;
+  });
+  // Add submission timestamp
+  data['_submitted'] = new Date().toISOString();
+  data['_form_version'] = '1.0';
+  return data;
+}
+
+// ── Validate minimum required fields ───────────────────────────
+function validateForm() {
+  const firstName = document.querySelector('input[name="patient_name"]')?.value?.trim();
+  if (!firstName) {
+    showStatus('Please enter the patient name before submitting.', 'error');
+    document.querySelector('input[name="patient_name"]').focus();
+    return false;
+  }
+  return true;
+}
+
+// ── Show status message ─────────────────────────────────────────
+function showStatus(msg, type) {
+  const el = document.getElementById('submitStatus');
+  el.style.display = 'block';
+  el.style.background = type === 'error' ? '#ffebee' : type === 'success' ? '#e8f5e9' : '#fff8e1';
+  el.style.border = `1px solid ${type === 'error' ? '#ef9a9a' : type === 'success' ? '#a5d6a7' : '#ffe082'}`;
+  el.style.color = type === 'error' ? '#b71c1c' : type === 'success' ? '#1b5e20' : '#f57f17';
+  el.textContent = msg;
+}
+
+// ── Generate a unique filename for this submission ──────────────
+function generateFilename(formData) {
+  const name = (formData['patient_name'] || 'Unknown').replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30);
+  const ts   = new Date().toISOString().replace(/[:.]/g, '-').substring(0, 19);
+  return `Intake_${name}_${ts}.json`;
+}
+
+// ── MSAL-style auth using redirect (no library needed) ──────────
+function getStoredToken() {
+  const token = sessionStorage.getItem('msft_access_token');
+  const expiry = sessionStorage.getItem('msft_token_expiry');
+  if (token && expiry && Date.now() < parseInt(expiry)) {
+    return token;
+  }
+  return null;
+}
+
+function storeToken(token, expiresIn) {
+  sessionStorage.setItem('msft_access_token', token);
+  sessionStorage.setItem('msft_token_expiry', Date.now() + (expiresIn * 1000));
+}
+
+function clearToken() {
+  sessionStorage.removeItem('msft_access_token');
+  sessionStorage.removeItem('msft_token_expiry');
+  sessionStorage.removeItem('pending_form_data');
+}
+
+function signIn() {
+  // Save form data so we can resume after redirect
+  const formData = collectFormData();
+  sessionStorage.setItem('pending_form_data', JSON.stringify(formData));
+
+  // Build auth URL
+  const params = new URLSearchParams({
+    client_id:     CLIENT_ID,
+    response_type: 'token',
+    redirect_uri:  REDIRECT_URI,
+    scope:         SCOPES.join(' '),
+    response_mode: 'fragment',
+    state:         'intake_submit',
+    nonce:         Math.random().toString(36).substring(2)
+  });
+
+  window.location.href = `${AUTH_URL}?${params.toString()}`;
+}
+
+// ── Handle redirect back from Microsoft login ───────────────────
+function handleRedirect() {
+  const hash = window.location.hash.substring(1);
+  if (!hash) return false;
+
+  const params = new URLSearchParams(hash);
+  const token  = params.get('access_token');
+  const state  = params.get('state');
+  const error  = params.get('error');
+
+  if (error) {
+    showStatus(`Sign-in error: ${params.get('error_description') || error}`, 'error');
+    return true;
+  }
+
+  if (token && state === 'intake_submit') {
+    const expiresIn = parseInt(params.get('expires_in') || '3600');
+    storeToken(token, expiresIn);
+    // Clean URL
+    history.replaceState(null, '', window.location.pathname + window.location.search);
+    // Resume submission with saved data
+    const saved = sessionStorage.getItem('pending_form_data');
+    if (saved) {
+      sessionStorage.removeItem('pending_form_data');
+      uploadToOneDrive(token, JSON.parse(saved));
+    }
+    return true;
+  }
+  return false;
+}
+
+// ── Upload JSON to OneDrive ─────────────────────────────────────
+async function uploadToOneDrive(token, formData) {
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'Submitting…';
+  showStatus('Uploading your form securely to the practice…', 'info');
+
+  const filename    = generateFilename(formData);
+  const jsonContent = JSON.stringify(formData, null, 2);
+  const uploadUrl   = `https://graph.microsoft.com/v1.0/me/drive/root:/${FOLDER_PATH}/${filename}:/content`;
+
+  try {
+    const response = await fetch(uploadUrl, {
+      method:  'PUT',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type':  'application/json'
+      },
+      body: jsonContent
+    });
+
+    if (response.ok) {
+      showStatus(
+        '✔ Your form was submitted successfully! The practice will review it before your appointment. ' +
+        'Please print a copy for your records.',
+        'success'
+      );
+      btn.textContent = '✔ Submitted';
+      btn.style.background = '#2e7d32';
+    } else {
+      const err = await response.json();
+      if (response.status === 401) {
+        // Token expired — re-authenticate
+        clearToken();
+        showStatus('Session expired. Please click Submit again to sign in.', 'error');
+        btn.disabled = false;
+        btn.textContent = '✔ Submit Form Securely';
+      } else {
+        showStatus(`Upload failed: ${err.error?.message || response.statusText}`, 'error');
+        btn.disabled = false;
+        btn.textContent = '✔ Submit Form Securely';
+      }
+    }
+  } catch (e) {
+    showStatus(`Network error: ${e.message}. Please check your connection and try again.`, 'error');
+    btn.disabled = false;
+    btn.textContent = '✔ Submit Form Securely';
+  }
+}
+
+// ── Main submit handler ─────────────────────────────────────────
+async function submitForm() {
+  if (!validateForm()) return;
+
+  // Check if CLIENT_ID has been configured
+  if (CLIENT_ID === 'YOUR_CLIENT_ID') {
+    showStatus('This form has not been configured yet. Please contact the practice.', 'error');
+    return;
+  }
+
+  const token = getStoredToken();
+  if (token) {
+    const formData = collectFormData();
+    await uploadToOneDrive(token, formData);
+  } else {
+    signIn();
+  }
+}
+
+// ── Clear form handler ──────────────────────────────────────────
+function clearForm() {
+  if (!confirm('Clear all fields? This cannot be undone.')) return;
+  document.querySelectorAll('input[type="text"], textarea').forEach(el => el.value = '');
+  document.querySelectorAll('input[type="checkbox"], input[type="radio"]').forEach(el => el.checked = false);
+  document.getElementById('submitStatus').style.display = 'none';
+  document.getElementById('submitBtn').disabled = false;
+  document.getElementById('submitBtn').textContent = '✔ Submit Form Securely';
+}
+
+// ── On page load: check if returning from Microsoft sign-in ────
+window.addEventListener('load', () => {
+  handleRedirect();
+});</script>
+</body>
+</html>
