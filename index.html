@@ -731,34 +731,35 @@
 
 <script>
 // ════════════════════════════════════════════════════════════════
-// CONFIGURATION — replace these three values before deploying
+// CONFIGURATION — paste your Power Automate HTTP trigger URL here
 // ════════════════════════════════════════════════════════════════
-const CLIENT_ID    = '4dd54839-d92d-4c1f-86a6-c862aba5fe06';      // From Step 1 of setup guide
-const TENANT_ID    = '7c415c58-538e-4a4a-8382-86289b4e6798';      // From Step 1 of setup guide
-const REDIRECT_URI = 'https://elvida73.github.io/intake-form-/';   // Must match Azure app registration
-const FOLDER_PATH  = 'Intake';  // OneDrive folder name
+const POWER_AUTOMATE_URL = 'https://default7c415c58538e4a4a838286289b4e67.98.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/85a8305f181b4eab9fc4b035a9eb4db8/triggers/manual/paths/invoke?api-version=1';
 // ════════════════════════════════════════════════════════════════
-
-const SCOPES = ['Files.ReadWrite', 'offline_access'];
-const AUTH_URL = `https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/authorize`;
-const TOKEN_URL = `https://login.microsoftonline.com/${TENANT_ID}/oauth2/v2.0/token`;
 
 // ── Collect all form data into a structured object ──────────────
 function collectFormData() {
   const data = {};
-  // Text inputs
+
+  // Text inputs and textareas
   document.querySelectorAll('input[type="text"], textarea').forEach(el => {
-    if (el.name) data[el.name] = el.value.replace(/'/g, "''"); // escape single quotes
+    if (el.name) data[el.name] = el.value;
   });
-  // Checkboxes
+
+  // Checkboxes — always included as true/false
   document.querySelectorAll('input[type="checkbox"]').forEach(el => {
     if (el.name) data[el.name] = el.checked ? 'true' : 'false';
   });
-  // Radio buttons (only capture checked ones)
+
+  // Radio buttons — first set ALL radio groups to empty string default
+  // so they always appear in JSON even if nothing is selected
+  document.querySelectorAll('input[type="radio"]').forEach(el => {
+    if (el.name && !(el.name in data)) data[el.name] = '';
+  });
+  // Then overwrite with the selected value if one exists
   document.querySelectorAll('input[type="radio"]:checked').forEach(el => {
     if (el.name) data[el.name] = el.value;
   });
-  // Add submission timestamp
+
   data['_submitted'] = new Date().toISOString();
   data['_form_version'] = '1.0';
   return data;
@@ -766,8 +767,8 @@ function collectFormData() {
 
 // ── Validate minimum required fields ───────────────────────────
 function validateForm() {
-  const firstName = document.querySelector('input[name="patient_name"]')?.value?.trim();
-  if (!firstName) {
+  const name = document.querySelector('input[name="patient_name"]')?.value?.trim();
+  if (!name) {
     showStatus('Please enter the patient name before submitting.', 'error');
     document.querySelector('input[name="patient_name"]').focus();
     return false;
@@ -785,106 +786,25 @@ function showStatus(msg, type) {
   el.textContent = msg;
 }
 
-// ── Generate a unique filename for this submission ──────────────
-function generateFilename(formData) {
-  const name = (formData['patient_name'] || 'Unknown').replace(/[^a-zA-Z0-9]/g, '_').substring(0, 30);
-  const ts   = new Date().toISOString().replace(/[:.]/g, '-').substring(0, 19);
-  return `Intake_${name}_${ts}.json`;
-}
+// ── Main submit handler ─────────────────────────────────────────
+async function submitForm() {
+  if (!validateForm()) return;
 
-// ── MSAL-style auth using redirect (no library needed) ──────────
-function getStoredToken() {
-  const token = sessionStorage.getItem('msft_access_token');
-  const expiry = sessionStorage.getItem('msft_token_expiry');
-  if (token && expiry && Date.now() < parseInt(expiry)) {
-    return token;
-  }
-  return null;
-}
-
-function storeToken(token, expiresIn) {
-  sessionStorage.setItem('msft_access_token', token);
-  sessionStorage.setItem('msft_token_expiry', Date.now() + (expiresIn * 1000));
-}
-
-function clearToken() {
-  sessionStorage.removeItem('msft_access_token');
-  sessionStorage.removeItem('msft_token_expiry');
-  sessionStorage.removeItem('pending_form_data');
-}
-
-function signIn() {
-  // Save form data so we can resume after redirect
-  const formData = collectFormData();
-  sessionStorage.setItem('pending_form_data', JSON.stringify(formData));
-
-  // Build auth URL
-  const params = new URLSearchParams({
-    client_id:     CLIENT_ID,
-    response_type: 'token',
-    redirect_uri:  REDIRECT_URI,
-    scope:         SCOPES.join(' '),
-    response_mode: 'fragment',
-    state:         'intake_submit',
-    nonce:         Math.random().toString(36).substring(2)
-  });
-
-  window.location.href = `${AUTH_URL}?${params.toString()}`;
-}
-
-// ── Handle redirect back from Microsoft login ───────────────────
-function handleRedirect() {
-  const hash = window.location.hash.substring(1);
-  if (!hash) return false;
-
-  const params = new URLSearchParams(hash);
-  const token  = params.get('access_token');
-  const state  = params.get('state');
-  const error  = params.get('error');
-
-  if (error) {
-    showStatus(`Sign-in error: ${params.get('error_description') || error}`, 'error');
-    return true;
-  }
-
-  if (token && state === 'intake_submit') {
-    const expiresIn = parseInt(params.get('expires_in') || '3600');
-    storeToken(token, expiresIn);
-    // Clean URL
-    history.replaceState(null, '', window.location.pathname + window.location.search);
-    // Resume submission with saved data
-    const saved = sessionStorage.getItem('pending_form_data');
-    if (saved) {
-      sessionStorage.removeItem('pending_form_data');
-      uploadToOneDrive(token, JSON.parse(saved));
-    }
-    return true;
-  }
-  return false;
-}
-
-// ── Upload JSON to OneDrive ─────────────────────────────────────
-async function uploadToOneDrive(token, formData) {
   const btn = document.getElementById('submitBtn');
   btn.disabled = true;
   btn.textContent = 'Submitting…';
-  showStatus('Uploading your form securely to the practice…', 'info');
+  showStatus('Sending your form securely to the practice…', 'info');
 
-  const filename    = generateFilename(formData);
-  const jsonContent = JSON.stringify(formData, null, 2);
-  const uploadUrl   = `https://graph.microsoft.com/v1.0/me/drive/root:/${FOLDER_PATH}/${filename}:/content`;
+  const formData = collectFormData();
 
   try {
-    const response = await fetch(uploadUrl, {
-      method:  'PUT',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type':  'application/json'
-      },
-      body: jsonContent
+    const response = await fetch(POWER_AUTOMATE_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(formData)
     });
 
-    if (response.ok) {
+    if (response.ok || response.status === 202) {
       showStatus(
         '✔ Your form was submitted successfully! The practice will review it before your appointment. ' +
         'Please print a copy for your records.',
@@ -893,42 +813,14 @@ async function uploadToOneDrive(token, formData) {
       btn.textContent = '✔ Submitted';
       btn.style.background = '#2e7d32';
     } else {
-      const err = await response.json();
-      if (response.status === 401) {
-        // Token expired — re-authenticate
-        clearToken();
-        showStatus('Session expired. Please click Submit again to sign in.', 'error');
-        btn.disabled = false;
-        btn.textContent = '✔ Submit Form Securely';
-      } else {
-        showStatus(`Upload failed: ${err.error?.message || response.statusText}`, 'error');
-        btn.disabled = false;
-        btn.textContent = '✔ Submit Form Securely';
-      }
+      showStatus(`Submission failed (${response.status}). Please call the practice to confirm receipt.`, 'error');
+      btn.disabled = false;
+      btn.textContent = '✔ Submit Form Securely';
     }
   } catch (e) {
     showStatus(`Network error: ${e.message}. Please check your connection and try again.`, 'error');
     btn.disabled = false;
     btn.textContent = '✔ Submit Form Securely';
-  }
-}
-
-// ── Main submit handler ─────────────────────────────────────────
-async function submitForm() {
-  if (!validateForm()) return;
-
-  // Check if CLIENT_ID has been configured
-  if (CLIENT_ID === 'YOUR_CLIENT_ID') {
-    showStatus('This form has not been configured yet. Please contact the practice.', 'error');
-    return;
-  }
-
-  const token = getStoredToken();
-  if (token) {
-    const formData = collectFormData();
-    await uploadToOneDrive(token, formData);
-  } else {
-    signIn();
   }
 }
 
@@ -940,11 +832,6 @@ function clearForm() {
   document.getElementById('submitStatus').style.display = 'none';
   document.getElementById('submitBtn').disabled = false;
   document.getElementById('submitBtn').textContent = '✔ Submit Form Securely';
-}
-
-// ── On page load: check if returning from Microsoft sign-in ────
-window.addEventListener('load', () => {
-  handleRedirect();
-});</script>
+}</script>
 </body>
 </html>
