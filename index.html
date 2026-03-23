@@ -734,7 +734,8 @@
 // CONFIGURATION — paste your Power Automate HTTP trigger URL here
 // ════════════════════════════════════════════════════════════════
 const POWER_AUTOMATE_URL = 'https://default7c415c58538e4a4a838286289b4e67.98.environment.api.powerplatform.com:443/powerautomate/automations/direct/workflows/85a8305f181b4eab9fc4b035a9eb4db8/triggers/manual/paths/invoke?api-version=1&sp=%2Ftriggers%2Fmanual%2Frun&sv=1.0&sig=qqVgT0A3uaSHUKMKyC9bvYiRBM0FmeQ7nZNQ2WsdRjQ';
-// ════════════════════════════════════════════════════════════════
+const SECRET_KEY = 'KulasNeuro2024!intake';
+  // ════════════════════════════════════════════════════════════════
 
 // ── Collect all form data into a structured object ──────────────
 function collectFormData() {
@@ -759,7 +760,7 @@ function collectFormData() {
   document.querySelectorAll('input[type="radio"]:checked').forEach(el => {
     if (el.name) data[el.name] = el.value;
   });
-
+data['_secret_key'] = SECRET_KEY;
   data['_submitted'] = new Date().toISOString();
   data['_form_version'] = '1.0';
   return data;
